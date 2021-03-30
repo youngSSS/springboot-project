@@ -14,7 +14,7 @@ CURRENT_PID=$(pgrep -fl ys-springboot-webservice | grep jar | awk '{print $1}')
 echo "Application pid On Running: $CURRENT_PID"
 
 if [ -z "$CURRENT_PID" ]; then
-  echo "> No Applications Are On Running. Applications Did Not Exit"
+  echo "> No Application Is On Running. Application Was Not Exited"
 else
   echo "> kill -15 $CURRENT_PID"
   kill -15 $CURRENT_PID
