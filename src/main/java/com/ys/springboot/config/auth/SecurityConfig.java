@@ -29,7 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     // anyRequest는 설정된 URL 이외의 것들을 총칭한다 (authenticated를 통해 로그인한 사용자만 접근 가능하도록 설정하였다)
                     .authorizeRequests()
                     .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile").permitAll()
-                    .antMatchers("/", "/css/**", "/images/**", "/js/**", "h2-console/**").permitAll()
                     .antMatchers("/api/v1/**").hasRole(Role.USER.name())
                     .anyRequest().authenticated()
                 .and()
