@@ -28,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     // 현재 첫 번째 antMatchers에 지정된 URL들은 전체 열람 권한을 주었고 두 번째는 USER 권한을 가진 사용자만 접근 가능하도록 설정하였다
                     // anyRequest는 설정된 URL 이외의 것들을 총칭한다 (authenticated를 통해 로그인한 사용자만 접근 가능하도록 설정하였다)
                     .authorizeRequests()
+                    .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile").permitAll()
                     .antMatchers("/", "/css/**", "/images/**", "/js/**", "h2-console/**").permitAll()
                     .antMatchers("/api/v1/**").hasRole(Role.USER.name())
                     .anyRequest().authenticated()
