@@ -4,7 +4,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/app/step2/zip/
+    destination: /home/ec2-user/app/step3/zip/
     overwrite: yes
 
 permissions:
@@ -14,7 +14,15 @@ permissions:
     group: ec2-user
 
 hooks:
+  AfterInstall:
+    - location: stop.sh # NGINX와 연결되어 있지 않은 Spring Boot를 종료
+      timeout: 60
+      runas: ex2-user
   ApplicationStart:
-    - location: deploy.sh
+    - location: start.sh # NGINX와 연결되어 있지 않은 Port로 새 버전의 Spring Boot 실행
+      timeout: 60
+      runas: ec2-user
+  ValidateService:
+    - location: health.sh # 새 버전의 Spring Boot가 정상적으로 실행되었는지 확인
       timeout: 60
       runas: ec2-user

@@ -20,7 +20,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group 'com.ys.springboot'
-version '1.0-SNAPSHOT'
+version '1.0-SNAPSHOT-' + new Date().format("yyyyMMddHHmmss")
 sourceCompatibility = 1.8
 
 // repositories는 각종 의존성 (library)들을 어떤 원격 저장소에서 받을 것인가를 지정

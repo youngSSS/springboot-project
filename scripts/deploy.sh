@@ -14,14 +14,14 @@ CURRENT_PID=$(pgrep -fl java | awk '{print $1}')
 echo "Application pid On Running: $CURRENT_PID"
 
 if [ -z "$CURRENT_PID" ]; then
-  echo "> No Application Is On Running. Application Was Not Exited"
+  echo "> No Application Is On Running. Application Was Not Terminated"
 else
   echo "> kill -15 $CURRENT_PID"
   kill -15 $CURRENT_PID
   sleep 5
 fi
 
-echo "> Deploy New Applications"
+echo "> Deploy New Application"
 
 JAR_NAME=$(ls -tr $REPOSITORY/*.jar | tail -n 1)
 
