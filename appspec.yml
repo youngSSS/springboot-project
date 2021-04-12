@@ -17,7 +17,7 @@ hooks:
   AfterInstall:
     - location: stop.sh # NGINX와 연결되어 있지 않은 Spring Boot를 종료
       timeout: 60
-      runas: ex2-user
+      runas: ec2-user
   ApplicationStart:
     - location: start.sh # NGINX와 연결되어 있지 않은 Port로 새 버전의 Spring Boot 실행
       timeout: 60
