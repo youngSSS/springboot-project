@@ -24,6 +24,8 @@ echo "> Add Executive Authority to $JAR_NAME"
 
 chmod +x $JAR_NAME
 
+echo "> Run $JAR_NAME"
+
 IDLE_PROFILE=$(find_idle_profile)
 
 echo "> Run $JAR_NAME as profile=$IDLE_PROFILE"
