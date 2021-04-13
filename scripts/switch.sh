@@ -11,7 +11,7 @@ function switch_proxy() {
     IDLE_PORT=$(find_idle_port)
 
     echo "> Port For Switching: $IDLE_PORT"
-    echo "> Switch Port"다
+    echo "> Switch Port"
     # NGINX가 변경할 proxy 주소 생성
     # "set \$service_url http://127.0.0.1:${IDLE_PORT};"
     # 앞에서 넘겨준 문장을 service-url.inc에 덮어쓴
