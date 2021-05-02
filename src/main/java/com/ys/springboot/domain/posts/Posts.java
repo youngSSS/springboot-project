@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 // Posts class는 실제 DB의 테이블과 매칭될 클래스,보통 Entity class라고도 한다
-// JPA를 사용하면 DB 데이터에 작업할 셩우 실제 쿼리를 날리기보다는, 이 Entity class의 수정을 통해 작업 수행
+// JPA를 사용하면 DB 데이터에 작업할 경우 실제 쿼리를 날리기보다는, 이 Entity class의 수정을 통해 작업 수행
 
 // Entity class에서는 "절대" setter method를 만들지 않는다
 // 만약 해당 필드의 값 변경이 필요하면, 명확히 그 목적과 의도를 나타낼 수 있는 메소드를 추가한다
