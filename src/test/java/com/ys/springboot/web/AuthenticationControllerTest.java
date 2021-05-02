@@ -131,7 +131,6 @@ public class AuthenticationControllerTest {
         // then
         ResponseEntity<String> response = restTemplate.getForEntity(getUrl, String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isEqualTo("true");
     }
 
 }

@@ -20,10 +20,16 @@ public class AuthenticationService {
         return memberRepository.save(requestDto.toEntity()).getId();
     }
 
-    // userId 중복확인
+    // Check User ID for duplicates
     @Transactional
     public Member findByUserId(String userId) {
         return memberRepository.findByUserId(userId);
+    }
+
+    // Check Email for duplicates
+    @Transactional
+    public Member findByEmail(String email) {
+        return memberRepository.findByEmail(email);
     }
 
     // 로그인
