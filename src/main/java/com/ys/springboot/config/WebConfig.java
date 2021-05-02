@@ -22,6 +22,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:3000", "http://ys-react-webservice.s3.ap-northeast-2.amazonaws.com");;
     }
 }
