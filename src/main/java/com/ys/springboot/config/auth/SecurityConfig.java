@@ -1,6 +1,5 @@
 package com.ys.springboot.config.auth;
 
-import com.ys.springboot.domain.user.Role;
 import com.ys.springboot.service.authentication.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 
@@ -19,8 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    private final CustomOAuth2UserService customOAuth2UserService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
