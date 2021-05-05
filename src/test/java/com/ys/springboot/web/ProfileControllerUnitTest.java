@@ -12,6 +12,7 @@ public class ProfileControllerUnitTest {
         // given
         String expectedProfile = "real";
         MockEnvironment env = new MockEnvironment();
+
         env.addActiveProfile(expectedProfile);
         env.addActiveProfile("oauth");
         env.addActiveProfile("real-db");
