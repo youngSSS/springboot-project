@@ -16,7 +16,7 @@ function switch_proxy() {
     # "set \$service_url http://127.0.0.1:${IDLE_PORT};"
     # 앞에서 넘겨준 문장을 service-url.inc에 덮어쓴다
     # sudo tee /etc/nginx/conf.d/service_url.inc
-    echo "set \$service_url http://127.0.0.1:${IDLE_PORT};" | sudo tee /etc/nginx/conf.d/service_url.inc
+    echo "set \$service_url http://127.0.0.1:${IDLE_PORT};" | sudo tee /etc/nginx/conf.d/service-url.inc
 
     echo "> Reload NGINX"
     sudo service nginx reload
