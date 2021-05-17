@@ -32,16 +32,20 @@ public class User extends BaseTimeEntity {
     @Column
     private String picture;
 
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String token;
+
     // 사용자의 권한을 관리할 Enum 클래스 Role
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
 
     @Builder
-    public User(String name, String email, String picture, Role role) {
+    public User(String name, String email, String picture, String token, Role role) {
         this.name = name;
         this.email = email;
         this.picture = picture;
+        this.token = token;
         this.role = role;
     }
 

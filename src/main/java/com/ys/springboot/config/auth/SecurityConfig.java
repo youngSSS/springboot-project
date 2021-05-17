@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         // OAuth 2 Login 성공 이후 사용자 정보를 가져올 때의 설정 담당
                         .userInfoEndpoint()
                             // 소셜 로그인 성공 시 후속 조치를 진행할 UserService 인터페이스의 구현체를 등록
-                            // 리소스 서버 (소셜 서비스들)에서 사용자 정보를 가젼온 상태에서 추가로 진행하고자 하는 기능을 명시할 수 있다
+                            // 리소스 서버 (소셜 서비스들)에서 사용자 정보를 가져온 상태에서 추가로 진행하고자 하는 기능을 명시할 수 있다
                             .userService(customOAuth2UserService);
     }
 

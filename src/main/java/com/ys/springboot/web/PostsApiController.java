@@ -39,4 +39,10 @@ public class PostsApiController {
         return id;
     }
 
+    @PostMapping("/token")
+    public Long token(@RequestBody PostsSaveRequestDto requestDto) {
+        return postsService.save(requestDto);
+    }
+
+
 }
