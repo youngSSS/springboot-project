@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,11 +25,12 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PortfolioControllerTest {
+public class PortfolioApiControllerTest {
 
     @LocalServerPort
     private int port;
@@ -76,7 +78,6 @@ public class PortfolioControllerTest {
                 .project(project)
                 .build();
 
-
         // when
         mvc.perform(post(url)
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -92,6 +93,52 @@ public class PortfolioControllerTest {
         assertThat(portfolio.getContact()).isEqualTo(contact);
         assertThat(portfolio.getSkill()).isEqualTo(skill);
         assertThat(portfolio.getProject()).isEqualTo(project);
+    }
+
+    @Test
+    public void Portfolio_수정된다() throws Exception {
+        // given
+        Portfolio savedPortfolio = portfolioRepository.save(Portfolio.builder()
+                .aboutMe("about Me")
+                .profile("profile")
+                .contact("contact")
+                .skill("skill")
+                .project("project")
+                .build());
+
+        Long updateId = savedPortfolio.getId();
+        String expectedAboutMe = "Modified About Me";
+        String expectedProfile = "Modified Profile";
+        String expectedContact = "Modified Contact";
+        String expectedSkill = "Modified Skill";
+        String expectedProject = "Modified Project";
+
+        PortfolioDto requestDto = PortfolioDto.builder()
+                .aboutMe(expectedAboutMe)
+                .profile(expectedProfile)
+                .contact(expectedContact)
+                .skill(expectedSkill)
+                .project(expectedProject)
+                .build();
+
+        String url = "http://localhost:" + port + "/api/portfolio/" + updateId;
+
+        HttpEntity<PortfolioDto> requestEntity = new HttpEntity<>(requestDto);
+
+        // when
+        mvc.perform(put(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isOk());
+
+        // then
+        List<Portfolio> all = portfolioRepository.findAll();
+        assertThat(all.get(0).getAboutMe()).isEqualTo(expectedAboutMe);
+        assertThat(all.get(0).getProfile()).isEqualTo(expectedProfile);
+        assertThat(all.get(0).getContact()).isEqualTo(expectedContact);
+        assertThat(all.get(0).getSkill()).isEqualTo(expectedSkill);
+        assertThat(all.get(0).getProject()).isEqualTo(expectedProject);
+
     }
 
 

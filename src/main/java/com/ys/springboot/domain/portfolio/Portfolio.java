@@ -17,8 +17,7 @@ import lombok.NoArgsConstructor;
 public class Portfolio extends BaseTimeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id = (long) 1;
 
     @Column
     private String aboutMe;
@@ -37,6 +36,14 @@ public class Portfolio extends BaseTimeEntity {
 
     @Builder
     public Portfolio(String aboutMe, String profile, String contact, String skill, String project) {
+        this.aboutMe = aboutMe;
+        this.profile = profile;
+        this.contact = contact;
+        this.skill = skill;
+        this.project = project;
+    }
+
+    public void update(String aboutMe, String profile, String contact, String skill, String project) {
         this.aboutMe = aboutMe;
         this.profile = profile;
         this.contact = contact;
