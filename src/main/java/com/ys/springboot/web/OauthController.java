@@ -2,6 +2,7 @@ package com.ys.springboot.web;
 
 import com.ys.springboot.config.auth.helper.SocialLoginType;
 import com.ys.springboot.service.oauth.OauthService;
+import com.ys.springboot.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,26 +19,23 @@ public class OauthController {
 
     /**
      * 사용자로부터 SNS 로그인 요청을 Social Login Type 을 받아 처리
-     * @param socialLoginType (GOOGLE, FACEBOOK, NAVER, KAKAO)
+     * @param socialLoginType (GOOGLE, NAVER, KAKAO)
      */
-    @GetMapping("/auth/{socialLoginType}")
-    public void socialLoginType(@PathVariable SocialLoginType socialLoginType) {
+    @GetMapping("/oauth/{socialLoginType}")
+    public void getSocialLoginType(@PathVariable SocialLoginType socialLoginType) {
         log.info(">> 사용자로부터 SNS 로그인 요청을 받음 :: {} Social Login", socialLoginType);
-        oauthService.request(socialLoginType);
+
+        oauthService.redirectLoginRequest(socialLoginType);
     }
 
     /**
      * Social Login API Server 요청에 의한 callback 을 처리
-     * @param socialLoginType (GOOGLE, FACEBOOK, NAVER, KAKAO)
+     * @param socialLoginType (GOOGLE, NAVER, KAKAO)
      * @param code API Server 로부터 넘어노는 code
-     * @return SNS Login 요청 결과로 받은 Json 형태의 String 문자열 (access_token, refresh_token 등)
      */
-    @GetMapping("/auth/{socialLoginType}/callback")
-    public String callback(
-            @PathVariable SocialLoginType socialLoginType,
-            @RequestParam(name = "code") String code) {
-        log.info(">> 소셜 로그인 API 서버로부터 받은 code :: {}", code);
-        return oauthService.requestAccessToken(socialLoginType, code);
+    @GetMapping("/oauth/{socialLoginType}/callback")
+    public void loginCallback(@PathVariable SocialLoginType socialLoginType, @RequestParam("code") String code) {
+        oauthService.callbackHandler(socialLoginType, code);
     }
 
 }

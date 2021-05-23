@@ -1,6 +1,7 @@
 package com.ys.springboot.domain.social;
 
 import com.ys.springboot.config.auth.helper.SocialLoginType;
+import com.ys.springboot.web.dto.UserDto;
 
 public interface SocialOauth {
 
@@ -16,6 +17,13 @@ public interface SocialOauth {
      * @return API 서버로 부터 응답받은 Json 형태의 결과를 string으로 반환
      */
     String requestAccessToken(String code);
+
+    /**
+     * API Server로부터 받은 code를 활용하여 사용자 인증 정보 요청
+     * @param accessToken API Server 에서 받아온 accessToken
+     * @return API 서버로 부터 응답받은 Json 형태의 결과를 string으로 반환
+     */
+    UserDto requestUserInfo(String accessToken);
 
     default SocialLoginType type() {
         if (this instanceof GoogleOauth) {

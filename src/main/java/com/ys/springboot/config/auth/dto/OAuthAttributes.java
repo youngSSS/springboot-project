@@ -5,7 +5,6 @@ import com.ys.springboot.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 
-import javax.naming.event.ObjectChangeListener;
 import java.util.Map;
 
 @Getter

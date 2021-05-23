@@ -1,6 +1,5 @@
 package com.ys.springboot.web.dto;
 
-import com.ys.springboot.domain.posts.Posts;
 import com.ys.springboot.domain.user.Role;
 import com.ys.springboot.domain.user.User;
 import lombok.Builder;
